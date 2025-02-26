@@ -1,0 +1,77 @@
+* {
+  font-family: "Gabarito";
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 320px;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+header div, header button {
+  background-color: transparent;
+  border: 0;
+  align-self: center;
+}
+header > div {
+  display: flex;
+}
+header > div > * {
+  margin-right: 25px;
+}
+
+h1 {
+  margin: 24px;
+  color: white;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.burger_menu {
+  width: 20px;
+  height: 12px;
+  align-self: center;
+}
+.burger_menu div {
+  position: relative;
+  height: 2px;
+  width: 20px;
+  background-color: white;
+}
+.burger_menu .burger_menu--first {
+  transition: 150ms;
+  top: 0;
+}
+.burger_menu .burger_menu--first--crossed {
+  top: auto;
+  rotate: 45deg;
+}
+.burger_menu .burger_menu--middle {
+  transition: 150ms;
+  top: 3px;
+}
+.burger_menu .burger_menu--middle--crossed {
+  display: none;
+}
+.burger_menu .burger_menu--last {
+  transition: 150ms;
+  top: 6px;
+}
+.burger_menu .burger_menu--last--crossed {
+  top: auto;
+  rotate: -45deg;
+}
+
+@media screen and (min-width: 1000px) {
+  .burger_menu {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=index.css.map */

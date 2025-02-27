@@ -22,12 +22,12 @@ header{
 
 .header_light{
     background-color: #5D00C8;
-    box-shadow: 0px 6px 6px 0px #764BA8A0;
+    box-shadow: 0px 0px 6px 6px #764BA8F0;
 }
 
 .header_dark{
     background-color: #3C3C3C;
-    box-shadow: 0px 6px 6px 0px #000000A0;
+    box-shadow: 0px 0px 6px 6px #000000A0;
 }
 
 h1{
@@ -58,7 +58,7 @@ nav{
 
     &.nav_light{
         background-color: #5D00C8;
-        box-shadow: 0px 6px 6px 0px #764BA8A0;
+        box-shadow: 0px 6px 6px 0px #764BA8F0;
     }
 
     &.nav_dark{

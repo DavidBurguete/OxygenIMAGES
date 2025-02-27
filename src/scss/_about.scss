@@ -1,0 +1,36 @@
+.about{
+    display: flex;
+    flex-direction: column;
+}
+
+h2{
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+
+    &.info_link--light{
+        color: black;
+        &>a{
+            color: #764BA8;
+            text-decoration: none;
+            border-bottom: 2px solid #764BA8;
+        }
+    }
+
+    &.info_link--dark{
+        color: white;
+        &>a{
+            color: #186CB4;
+            text-decoration: none;
+            border-bottom: 2px solid #186CB4;
+        }
+    }
+}
+
+.logo{
+    margin-top: 40px;
+    width: 40%;
+    max-width: 300px;
+    align-self: center;
+}

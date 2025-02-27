@@ -9,6 +9,14 @@ body {
   min-width: 320px;
 }
 
+body.light {
+  background-color: white;
+}
+
+body.dark {
+  background-color: #AAAAAA;
+}
+
 header {
   height: 80px;
   width: 100%;
@@ -30,12 +38,12 @@ header > div > * {
 
 .header_light {
   background-color: #5D00C8;
-  box-shadow: 0px 6px 6px 0px rgba(118, 75, 168, 0.6274509804);
+  box-shadow: 0px 0px 6px 6px rgba(118, 75, 168, 0.9411764706);
 }
 
 .header_dark {
   background-color: #3C3C3C;
-  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.6274509804);
+  box-shadow: 0px 0px 6px 6px rgba(0, 0, 0, 0.6274509804);
 }
 
 h1 {
@@ -64,7 +72,7 @@ nav.deploy_nav--non_active {
 }
 nav.nav_light {
   background-color: #5D00C8;
-  box-shadow: 0px 6px 6px 0px rgba(118, 75, 168, 0.6274509804);
+  box-shadow: 0px 6px 6px 0px rgba(118, 75, 168, 0.9411764706);
 }
 nav.nav_dark {
   background-color: #3C3C3C;
@@ -142,6 +150,40 @@ nav a.active--dark {
   nav a {
     text-align: center;
   }
+}
+.about {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+h2.info_link--light {
+  color: black;
+}
+h2.info_link--light > a {
+  color: #764BA8;
+  text-decoration: none;
+  border-bottom: 2px solid #764BA8;
+}
+h2.info_link--dark {
+  color: white;
+}
+h2.info_link--dark > a {
+  color: #186CB4;
+  text-decoration: none;
+  border-bottom: 2px solid #186CB4;
+}
+
+.logo {
+  margin-top: 40px;
+  width: 40%;
+  max-width: 300px;
+  align-self: center;
 }
 
 /*# sourceMappingURL=index.css.map */

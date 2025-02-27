@@ -18,20 +18,20 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <ThemeProvider>
+    <ThemeProvider>
+      <BrowserRouter>
         <Header logoText={"OxygenIMAGES"}>
           <LightDarkThemeToggler img={"./src/img/light-dark-"} size={30}/>
           <Nav isMenuDeployed={isActive}/>
           <BurgerMenu isDeployed={isActive} onClick={toggleActive} classname="burger_menu"/>
         </Header>
-      </ThemeProvider>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/myphotos" element={<MyPhotos/>}/>
         <Route path="/about" element={<About/>}/>
       </Routes>
     </BrowserRouter>
+  </ThemeProvider>
   )
 }
 

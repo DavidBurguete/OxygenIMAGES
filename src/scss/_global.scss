@@ -8,3 +8,11 @@
  body {
     min-width: 320px;
  }
+
+ body.light{
+   background-color: white;
+ }
+
+ body.dark{
+   background-color: #AAAAAA;
+ }

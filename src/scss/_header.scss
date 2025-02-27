@@ -1,5 +1,7 @@
 header{
+    height: 80px;
     width: 100%;
+    position: sticky;
     display: flex;
     justify-content: space-between;
 
@@ -18,11 +20,68 @@ header{
     }
 }
 
+.header_light{
+    background-color: #5D00C8;
+    box-shadow: 0px 6px 6px 0px #764BA8A0;
+}
+
+.header_dark{
+    background-color: #3C3C3C;
+    box-shadow: 0px 6px 6px 0px #000000A0;
+}
+
 h1{
     margin: 24px;
     color: white;
     font-weight: 900;
     font-size: 24px;
+    align-self: center;
+}
+
+nav{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    left: 0;
+    top:80px;
+    padding: 5px 24px;
+    transition: 100ms;
+
+    &.deploy_nav--active{
+        transform: scaleY(1.0);
+    }
+
+    &.deploy_nav--non_active{
+        transform: scaleY(0.0);
+    }
+
+    &.nav_light{
+        background-color: #5D00C8;
+        box-shadow: 0px 6px 6px 0px #764BA8A0;
+    }
+
+    &.nav_dark{
+        background-color: #3C3C3C;
+        box-shadow: 0px 6px 6px 0px #000000A0;
+    }
+
+    a{
+        color: white;
+        text-decoration: none;
+        text-align: left;
+        align-self: flex-start;
+        width: 100px;
+        margin-block: 5px;
+    }
+
+    a.active{
+        text-decoration: underline 2px;
+    }
+
+    a.active--dark{
+        text-decoration-color: #186CB4;
+    }
 }
 
 .burger_menu{
@@ -37,24 +96,25 @@ h1{
         background-color: white;
     }
 
-    $transition: 150ms;
+    $transition: 500ms;
     .burger_menu--first{
         transition: $transition;
         top: 0;
     }
 
     .burger_menu--first--crossed{
-        top: auto;
+        top: 5px;
         rotate: 45deg;
     }
 
     .burger_menu--middle{
         transition: $transition;
+        justify-self: center;
         top: 3px;
     }
 
     .burger_menu--middle--crossed{
-        display: none;
+        width: 0%;
     }
 
     .burger_menu--last{
@@ -63,13 +123,31 @@ h1{
     }
 
     .burger_menu--last--crossed{
-        top: auto;
+        top: 1px;
         rotate: -45deg;
     }
 }
 
 @media screen and (min-width: 1000px) {
+
     .burger_menu{
         display: none;
+    }
+
+    nav{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        top: 0;
+        padding: 0;
+
+        &.nav_light, &.nav_dark{
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        a{
+            text-align: center;
+        }
     }
 }

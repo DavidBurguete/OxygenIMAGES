@@ -9,8 +9,18 @@ body {
   min-width: 320px;
 }
 
+body.light {
+  background-color: white;
+}
+
+body.dark {
+  background-color: #AAAAAA;
+}
+
 header {
+  height: 80px;
   width: 100%;
+  position: sticky;
   display: flex;
   justify-content: space-between;
 }
@@ -26,11 +36,61 @@ header > div > * {
   margin-right: 25px;
 }
 
+.header_light {
+  background-color: #5D00C8;
+  box-shadow: 0px 6px 6px 0px rgba(118, 75, 168, 0.6274509804);
+}
+
+.header_dark {
+  background-color: #3C3C3C;
+  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.6274509804);
+}
+
 h1 {
   margin: 24px;
   color: white;
   font-weight: 900;
   font-size: 24px;
+  align-self: center;
+}
+
+nav {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  left: 0;
+  top: 80px;
+  padding: 5px 24px;
+  transition: 100ms;
+}
+nav.deploy_nav--active {
+  transform: scaleY(1);
+}
+nav.deploy_nav--non_active {
+  transform: scaleY(0);
+}
+nav.nav_light {
+  background-color: #5D00C8;
+  box-shadow: 0px 6px 6px 0px rgba(118, 75, 168, 0.6274509804);
+}
+nav.nav_dark {
+  background-color: #3C3C3C;
+  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.6274509804);
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  text-align: left;
+  align-self: flex-start;
+  width: 100px;
+  margin-block: 5px;
+}
+nav a.active {
+  text-decoration: underline 2px;
+}
+nav a.active--dark {
+  text-decoration-color: #186CB4;
 }
 
 .burger_menu {
@@ -45,32 +105,47 @@ h1 {
   background-color: white;
 }
 .burger_menu .burger_menu--first {
-  transition: 150ms;
+  transition: 500ms;
   top: 0;
 }
 .burger_menu .burger_menu--first--crossed {
-  top: auto;
+  top: 5px;
   rotate: 45deg;
 }
 .burger_menu .burger_menu--middle {
-  transition: 150ms;
+  transition: 500ms;
+  justify-self: center;
   top: 3px;
 }
 .burger_menu .burger_menu--middle--crossed {
-  display: none;
+  width: 0%;
 }
 .burger_menu .burger_menu--last {
-  transition: 150ms;
+  transition: 500ms;
   top: 6px;
 }
 .burger_menu .burger_menu--last--crossed {
-  top: auto;
+  top: 1px;
   rotate: -45deg;
 }
 
 @media screen and (min-width: 1000px) {
   .burger_menu {
     display: none;
+  }
+  nav {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 0;
+    padding: 0;
+  }
+  nav.nav_light, nav.nav_dark {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  nav a {
+    text-align: center;
   }
 }
 

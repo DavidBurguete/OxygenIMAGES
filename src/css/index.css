@@ -9,14 +9,6 @@ body {
   min-width: 320px;
 }
 
-body.light {
-  background-color: white;
-}
-
-body.dark {
-  background-color: #AAAAAA;
-}
-
 header {
   height: 80px;
   width: 100%;
@@ -139,6 +131,9 @@ nav a.active--dark {
     position: relative;
     top: 0;
     padding: 0;
+  }
+  nav.deploy_nav--active, nav.deploy_nav--non_active {
+    transform: scale(1);
   }
   nav.nav_light, nav.nav_dark {
     background-color: transparent;

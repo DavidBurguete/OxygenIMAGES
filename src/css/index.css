@@ -17,11 +17,26 @@ body.dark {
   background-color: #AAAAAA;
 }
 
+main.main_background--dark, main.main_background--light {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+main.main_background--dark {
+  background-image: url("../../assets/img/OxygenIMAGES-dark.png");
+}
+
+main.main_background--light {
+  background-image: url("../../assets/img/OxygenIMAGES-light.png");
+}
+
 header {
   height: 80px;
   width: 100%;
   position: sticky;
   display: flex;
+  top: 0;
   justify-content: space-between;
 }
 header div, header button {
@@ -62,7 +77,8 @@ nav {
   left: 0;
   top: 80px;
   padding: 5px 24px;
-  transition: 100ms;
+  transition: 200ms ease-in-out;
+  transform-origin: top;
 }
 nav.deploy_nav--active {
   transform: scaleY(1);
@@ -184,6 +200,37 @@ h2.info_link--dark > a {
   width: 40%;
   max-width: 300px;
   align-self: center;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding-block: 60px;
+  width: 100%;
+  font-size: 40px;
+  font-weight: 700;
+}
+.loading img {
+  width: 40px;
+  height: 40px;
+  align-self: center;
+  margin: 5px;
+  animation: loading-spin infinite 1s linear;
+}
+@keyframes loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .loading {
+    padding: 50px;
+    font-size: 50px;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,18 +1,32 @@
 * {
-    font-family: "Gabarito";
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
- }
+  font-family: "Gabarito";
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
  
- body {
-    min-width: 320px;
- }
+body {
+  min-width: 320px;
+}
 
- body.light{
-   background-color: white;
- }
+body.light{
+  background-color: white;
+}
 
- body.dark{
-   background-color: #AAAAAA;
- }
+body.dark{
+  background-color: #AAAAAA;
+}
+
+main.main_background--dark, main.main_background--light{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+main.main_background--dark{
+  background-image: url("../../assets/img/OxygenIMAGES-dark.png");
+}
+
+main.main_background--light{
+  background-image: url("../../assets/img/OxygenIMAGES-light.png");
+}

@@ -21,7 +21,7 @@ function App() {
     <ThemeProvider>
       <BrowserRouter>
         <Header logoText={"OxygenIMAGES"}>
-          <LightDarkThemeToggler img={"./src/img/light-dark-"} size={30}/>
+          <LightDarkThemeToggler img={"./assets/img/light-dark-"} size={30}/>
           <Nav isMenuDeployed={isActive}/>
           <BurgerMenu isDeployed={isActive} onClick={toggleActive} classname="burger_menu"/>
         </Header>

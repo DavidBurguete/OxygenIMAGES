@@ -3,6 +3,7 @@ header{
     width: 100%;
     position: sticky;
     display: flex;
+    top: 0;
     justify-content: space-between;
 
     div, button{
@@ -46,7 +47,8 @@ nav{
     left: 0;
     top:80px;
     padding: 5px 24px;
-    transition: 100ms;
+    transition: 200ms ease-in-out;
+    transform-origin: top;
 
     &.deploy_nav--active{
         transform: scaleY(1.0);

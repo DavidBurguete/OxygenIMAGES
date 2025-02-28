@@ -3,7 +3,8 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({children}) => {
-    const [ isDark, setIsDark ] = useState(false);
+    const isDarkLocalStorage = localStorage.getItem("isDark");
+    const [ isDark, setIsDark ] = useState(isDarkLocalStorage === null?false:(isDarkLocalStorage === "true"?true:false));
 
     const toggleTheme = () => {
         setIsDark(prevMode => !prevMode);
@@ -19,6 +20,7 @@ export const ThemeProvider = ({children}) => {
         body.classList.remove("dark");
         body.classList.add("light");
       }
+      localStorage.setItem("isDark", isDark);
     }, [isDark]);
 
     return (

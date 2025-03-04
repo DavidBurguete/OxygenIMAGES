@@ -17,10 +17,17 @@ body.dark{
   background-color: #AAAAAA;
 }
 
+main{
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-wrap: wrap;
+}
+
 main.main_background--dark, main.main_background--light{
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 50%;
+  background-size: auto 50%;
+  background-attachment: fixed;
 }
 
 main.main_background--dark{
@@ -29,4 +36,12 @@ main.main_background--dark{
 
 main.main_background--light{
   background-image: url("../../assets/img/OxygenIMAGES-light.png");
+}
+
+button{
+  cursor: pointer;
+}
+
+.no-visibility{
+  visibility: hidden;
 }

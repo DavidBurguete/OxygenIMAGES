@@ -17,10 +17,17 @@ body.dark {
   background-color: #AAAAAA;
 }
 
+main {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-wrap: wrap;
+}
+
 main.main_background--dark, main.main_background--light {
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 50%;
+  background-size: auto 50%;
+  background-attachment: fixed;
 }
 
 main.main_background--dark {
@@ -31,6 +38,14 @@ main.main_background--light {
   background-image: url("../../assets/img/OxygenIMAGES-light.png");
 }
 
+button {
+  cursor: pointer;
+}
+
+.no-visibility {
+  visibility: hidden;
+}
+
 header {
   height: 80px;
   width: 100%;
@@ -38,6 +53,7 @@ header {
   display: flex;
   top: 0;
   justify-content: space-between;
+  z-index: 5;
 }
 header div, header button {
   background-color: transparent;
@@ -230,6 +246,106 @@ h2.info_link--dark > a {
   .loading {
     padding: 50px;
     font-size: 50px;
+  }
+}
+.error {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 90px 30px;
+}
+
+.error--light {
+  color: black;
+}
+
+.error--dark {
+  color: white;
+}
+
+.image-cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 20px;
+}
+
+.image-cards {
+  width: 50%;
+  padding-bottom: 20px;
+}
+
+.image-card {
+  padding-inline: 10px;
+  padding-bottom: 20px;
+}
+
+.image-card__card {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.image-card__interact {
+  opacity: 0;
+  position: absolute;
+  width: calc(50% - 40px);
+  background-color: rgba(93, 92, 100, 0.6980392157);
+  transition: 200ms;
+  z-index: 1;
+}
+
+.image-card__interact:hover {
+  opacity: 1;
+}
+
+.image-card--save {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+}
+.image-card--save img {
+  width: 28px;
+  height: 28px;
+  align-self: center;
+}
+
+.image-card--save--light {
+  background-color: #FFFFFF;
+}
+
+.image-card--save--dark {
+  background-color: #2F2FD3;
+}
+
+.image-card__card--download {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.6980392157);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.image-card__card--download button {
+  background-color: transparent;
+  border: 0;
+}
+.image-card__card--download button img {
+  height: 40px;
+  align-self: center;
+}
+
+@media screen and (min-width: 1000px) {
+  .image-card__interact {
+    width: calc(25% - 30px);
   }
 }
 

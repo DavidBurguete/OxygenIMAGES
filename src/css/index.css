@@ -250,9 +250,10 @@ h2.info_link--dark > a {
 }
 .error {
   text-align: center;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: bold;
   padding: 90px 30px;
+  width: 100%;
 }
 
 .error--light {
@@ -281,6 +282,7 @@ h2.info_link--dark > a {
 }
 
 .image-card__card {
+  display: block;
   width: 100%;
   border-radius: 10px;
 }
@@ -347,6 +349,25 @@ h2.info_link--dark > a {
   .image-card__interact {
     width: calc(25% - 30px);
   }
+}
+.paginate {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.paginate button {
+  color: white;
+  font-size: 26px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 30px;
+}
+.paginate button.paginate__button--dark {
+  background-color: #2F2FD3;
+}
+.paginate button.paginate__button--light {
+  background-color: #764BA8;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -8,6 +8,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import About from './pages/About';
 import Home from './pages/Home';
 import MyPhotos from './pages/MyPhotos';
+import Error404 from './pages/Error404';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/myphotos" element={<MyPhotos/>}/>
         <Route path="/about" element={<About/>}/>
+        <Route path="*" element={<Error404/>}/>
       </Routes>
     </BrowserRouter>
   </ThemeProvider>

@@ -38,7 +38,7 @@ main.main_background--light{
   background-image: url("../../assets/img/OxygenIMAGES-light.png");
 }
 
-button{
+button:not(:disabled){
   cursor: pointer;
 }
 

@@ -1,0 +1,46 @@
+.paginator{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .paginate{
+        margin-bottom: 50px;
+        border-radius: 10px;
+
+        &.paginate--dark{
+            background-color: #2F2FD3;
+        }
+        
+        &.paginate--light{
+            background-color: #764BA8;
+        }
+
+        .paginate__button{
+            background-color: transparent;
+        }
+
+        strong{
+            text-decoration: underline;
+        }
+
+        button{
+            color: white;
+            font-size: 26px;
+            border: none;
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .paginate__button--pc{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .paginate__button--dots--pc{
+        display: none;
+    }
+}

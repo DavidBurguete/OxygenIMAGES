@@ -43,7 +43,8 @@ button:not(:disabled) {
 }
 
 .no-visibility {
-  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
 }
 
 header {
@@ -264,15 +265,7 @@ h2.info_link--dark > a {
   color: white;
 }
 
-.image-cards-grid {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 20px;
-}
-
 .image-cards {
-  width: 50%;
   padding-bottom: 20px;
 }
 
@@ -290,18 +283,14 @@ h2.info_link--dark > a {
 .image-card__interact {
   opacity: 0;
   position: absolute;
-  width: calc(50% - 40px);
+  width: calc(100% - 20px);
   background-color: rgba(93, 92, 100, 0.6980392157);
   transition: 200ms;
   z-index: 1;
 }
 
-.image-card__interact:hover {
-  opacity: 1;
-}
-
 .image-card--save {
-  display: flex;
+  display: none;
   justify-content: center;
   position: absolute;
   top: 10px;
@@ -310,6 +299,7 @@ h2.info_link--dark > a {
   height: 40px;
   border: none;
   border-radius: 10px;
+  z-index: 5;
 }
 .image-card--save img {
   width: 28px;
@@ -326,7 +316,7 @@ h2.info_link--dark > a {
 }
 
 .image-card__card--download {
-  display: flex;
+  display: none;
   justify-content: center;
   position: absolute;
   bottom: 0;
@@ -335,6 +325,7 @@ h2.info_link--dark > a {
   background-color: rgba(0, 0, 0, 0.6980392157);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  z-index: 5;
 }
 .image-card__card--download button {
   background-color: transparent;
@@ -345,9 +336,25 @@ h2.info_link--dark > a {
   align-self: center;
 }
 
+.react-photo-album {
+  flex-direction: row;
+  display: flex;
+  margin: 20px auto;
+}
+.react-photo-album .react-photo-album--track {
+  position: relative;
+  flex-direction: column;
+}
+
 @media screen and (min-width: 1000px) {
-  .image-card__interact {
-    width: calc(25% - 30px);
+  .react-photo-album {
+    margin: 20px;
+  }
+  .image-card--save, .image-card__card--download {
+    display: flex;
+  }
+  .image-card__interact:hover {
+    opacity: 1;
   }
 }
 .paginator {
@@ -362,8 +369,14 @@ h2.info_link--dark > a {
 .paginator .paginate.paginate--dark {
   background-color: #2F2FD3;
 }
+.paginator .paginate.paginate--dark button:not(:last-child) {
+  border-right: 1px solid #AAAAAA;
+}
 .paginator .paginate.paginate--light {
   background-color: #764BA8;
+}
+.paginator .paginate.paginate--light button:not(:last-child) {
+  border-right: 1px solid #5D00C8;
 }
 .paginator .paginate .paginate__button {
   background-color: transparent;
@@ -387,6 +400,85 @@ h2.info_link--dark > a {
 @media screen and (max-width: 400px) {
   .paginate__button--dots--pc {
     display: none;
+  }
+}
+.modal {
+  position: fixed;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: 0.5s linear;
+  overflow: auto;
+  z-index: 10;
+}
+.modal .modal-dialog {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: calc(100% - 40px);
+  margin: 20px auto;
+  background-color: transparent;
+  border-radius: 30px;
+}
+.modal .modal-dialog .modal-header {
+  position: absolute;
+  font-size: 30px;
+  color: black;
+}
+.modal .modal-dialog .modal-header .close {
+  font-size: 55px;
+  height: 40px;
+  width: 40px;
+  color: red;
+  border: none;
+  background: none;
+}
+.modal .modal-dialog .modal-body {
+  border-radius: 30px;
+}
+.modal .modal-dialog .modal-body .image-card--download--modal, .modal .modal-dialog .modal-body .image-card--save--modal {
+  position: absolute;
+  top: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  z-index: 5;
+}
+.modal .modal-dialog .modal-body .image-card--download--modal img, .modal .modal-dialog .modal-body .image-card--save--modal img {
+  width: 28px;
+  height: 28px;
+  align-self: center;
+}
+.modal .modal-dialog .modal-body .image-card--save--modal {
+  left: 20px;
+}
+.modal .modal-dialog .modal-body .image-card--download--modal {
+  right: 20px;
+}
+.modal .modal-dialog .modal-body .modal--full_image {
+  display: block;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.modal--fadeIn {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media screen and (min-width: 1000px) {
+  .modal .modal-dialog {
+    width: max-content;
+    top: 5%;
+  }
+  .modal .modal-dialog .modal-body .modal--full_image {
+    width: max-content;
+    height: 85vh;
   }
 }
 

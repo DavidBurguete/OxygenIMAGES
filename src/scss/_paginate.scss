@@ -9,10 +9,18 @@
 
         &.paginate--dark{
             background-color: #2F2FD3;
+
+            button:not(:last-child){
+                border-right: 1px solid #AAAAAA;
+            }
         }
         
         &.paginate--light{
             background-color: #764BA8;
+
+            button:not(:last-child){
+                border-right: 1px solid #5D00C8;
+            }
         }
 
         .paginate__button{

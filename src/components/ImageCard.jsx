@@ -1,15 +1,16 @@
 import { useTheme } from "./ThemeProvider";
 import { saveAs } from 'file-saver';
-import Masonry from 'react-masonry-css'
 import { ColumnsPhotoAlbum } from "react-photo-album";
+import { useSelector } from "react-redux";
 import "react-photo-album/styles.css";
 
-function ImageCard({images}){
+function ImageCard(){
     const { isDark } = useTheme();
+    const { images } = useSelector((state) => state.search);
 
-    const gallery = Object.keys(images).map(key => {
-        const imageUrl = images[key].download+"&client_id=Zws9gh0kAQ4lmheTh2imCNYIzl0ZpQYd6HqFDJS0XrI";
-        const imageID = images[key].id;
+    const gallery = images.map(image => {
+        const imageUrl = image.download+"&client_id=Zws9gh0kAQ4lmheTh2imCNYIzl0ZpQYd6HqFDJS0XrI";
+        const imageID = image.id;
 
         async function downloadImage() {
             try {
@@ -50,10 +51,10 @@ function ImageCard({images}){
         };
 
         return {
-            id: images[key].id,
-            src: images[key].link,
-            width: images[key].width,
-            height: images[key].height,
+            id: image.id,
+            src: image.link,
+            width: image.width,
+            height: image.height,
             download: downloadImage,
             fadeIn: fadeIn,
             close: closeModal,
@@ -68,7 +69,7 @@ function ImageCard({images}){
                 return <span key={photo.id}>
                     <div className="image-card" htmlFor={photo.id}>
                         <div className="image-card__card image-card__interact">
-                            <button className={"image-card--save image-card--save--"+(isDark?"dark":"light")}>
+                            <button className={`image-card--save image-card--save--${isDark?"dark":"light"}`}>
                                 <img src={"assets/img/bookmark-"+(isDark?"dark":"light")+".png"} alt="bookmark"></img>
                             </button>
                             <div className="image-card__card--download">

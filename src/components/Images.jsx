@@ -1,15 +1,14 @@
 import ErrorMessage from "./ErrorMessage";
 import ImageCard from "./ImageCard";
 import Paginate from "./Paginate";
-import { useTheme } from "./ThemeProvider";
 
 function Images({data, actions}){
-    const { isDark } = useTheme();
-
-    if(data.type === "data")
-        return (<><ImageCard images={data.images}/><Paginate actions={actions}/></>);
+    if(data.images == false)
+        return <ErrorMessage message="There are no images to display"/>
+    else if(data.error === null)
+        return (<><ImageCard fetchedImages={data.images}/><Paginate actions={actions}/></>);
     else{
-        return <ErrorMessage message={data.errorMessage}/>
+        return <ErrorMessage message={data.error}/>
     }
 }
 

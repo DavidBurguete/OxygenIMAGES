@@ -1,5 +1,11 @@
+import MyImages from "../components/MyImages";
+import Main from "../components/Main";
+import { useSelector } from "react-redux";
+
 function MyPhotos(){
-    return <p>TO BE REPLACED BY &lt;MYPHOTOS/&gt;</p>
+    const { favorites } = useSelector((state) => state.favorites);
+
+    return <Main><MyImages data={{images: favorites}}/></Main>
 }
 
 export default MyPhotos;

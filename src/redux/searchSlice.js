@@ -1,11 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
-import { firstPage, setLastPage } from "./paginationSlice";
-import { useDispatch } from "react-redux";
 
-export const search = createAsyncThunk("search/fetchSearch", async ({query}) => {
-    const dispatch = useDispatch();
-    let { page, lastPage } = useSelector((state) => state.pagination);
+export const search = createAsyncThunk("search/fetchSearch", async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const { query, page } = state.search;
     let url = '';
     if(query !== ""){
         url = `https://api.unsplash.com/search/photos?query=${query}&page=${page}&per_page=30&client_id=Zws9gh0kAQ4lmheTh2imCNYIzl0ZpQYd6HqFDJS0XrI`;
@@ -24,6 +21,7 @@ export const search = createAsyncThunk("search/fetchSearch", async ({query}) => 
         const data = await response.json();
 
         let images = null;
+        let total_pages = 999;
 
         if(query !== ""){
             images = data.results.map((image) => {
@@ -40,8 +38,7 @@ export const search = createAsyncThunk("search/fetchSearch", async ({query}) => 
                     liked_by_user: image.liked_by_user,
                 })
             });
-            const total_pages = data.total_pages >= 200 ? 200 : data.total_pages;
-            dispatch(setLastPage(total_pages));
+            total_pages = data.total_pages >= 200 ? 200 : data.total_pages;
         }
         else{
             images = data.map((image) => {
@@ -58,10 +55,9 @@ export const search = createAsyncThunk("search/fetchSearch", async ({query}) => 
                     liked_by_user: image.liked_by_user,
                 })
             });
-            dispatch(setLastPage(999));
         }
 
-        return images;
+        return [images, total_pages];
     }
     catch(error){
         return Promise.reject({errorMessage: error.message});
@@ -71,20 +67,38 @@ export const search = createAsyncThunk("search/fetchSearch", async ({query}) => 
 const searchSlice = createSlice({
     name: 'search',
     initialState: {
+        query: '',
         images: [],
         pending: true,
-        error: null
+        error: null,
+        page: 1,
+        lastPage: 999
     },
-    reducers: {},
+    reducers: {
+        goToPage: (state, action) => {
+            const newPage = action.payload;
+            if(1 <= newPage && newPage <= state.lastPage){
+                state.page = newPage;
+            }
+        },
+        setQuery: (state, action) => {
+            state.query = action.payload;
+        }
+    },
     extraReducers: builder => {
         builder.addCase(search.fulfilled, (state, action) => {
             state.pending = false;
-            state.images = action.payload;
+            [state.images, state.lastPage] = action.payload;
         }).addCase(search.rejected, (state, action) => {
             state.pending = false;
             state.error = action.payload;
         });
     }
 });
+
+export const {
+    goToPage,
+    setQuery
+} = searchSlice.actions;
 
 export default searchSlice.reducer;

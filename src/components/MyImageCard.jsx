@@ -1,16 +1,15 @@
 import { useTheme } from "./ThemeProvider";
 import { saveAs } from 'file-saver';
 import { ColumnsPhotoAlbum } from "react-photo-album";
-import { useSelector, useDispatch } from "react-redux";
-import { addFavorite } from "../redux/favoritesSlice";
+import { removeFavorite } from "../redux/favoritesSlice";
+import { useDispatch } from "react-redux";
 import "react-photo-album/styles.css";
 
-function ImageCard({fetchedImages}){
+function MyImageCard({fetchedImages}){
     const { isDark } = useTheme();
     const dispatch = useDispatch();
-    const { favorites } = useSelector(state => state.favorites);
-
-    const saveImage = img => {
+    
+    const removeImage = img => {
         const img_copy = {
             id: img.id,
             src: img.src,
@@ -23,12 +22,11 @@ function ImageCard({fetchedImages}){
             description: img.description,
             download_link: img.download_link
         }
-        dispatch(addFavorite(img_copy));
-        localStorage.setItem("favorites", JSON.stringify(favorites));
+        dispatch(removeFavorite(img_copy));
     }
 
     const gallery = fetchedImages.map(image => {
-        const imageUrl = image.download+"&client_id=Zws9gh0kAQ4lmheTh2imCNYIzl0ZpQYd6HqFDJS0XrI";
+        const imageUrl = image.download_link+"&client_id=Zws9gh0kAQ4lmheTh2imCNYIzl0ZpQYd6HqFDJS0XrI";
         const imageID = image.id;
 
         async function downloadImage() {
@@ -40,7 +38,6 @@ function ImageCard({fetchedImages}){
                 }
 
                 const image = await response.json();
-                
                 saveAs(image.url, imageID+".png");
             } catch (error) {
                 console.error('Error al descargar la imagen:', error);
@@ -71,7 +68,7 @@ function ImageCard({fetchedImages}){
 
         return {
             id: imageID,
-            src: image.link,
+            src: image.src,
             date: image.date,
             width: image.width,
             height: image.height,
@@ -94,8 +91,8 @@ function ImageCard({fetchedImages}){
                 return <span key={photo.id}>
                     <div className="image-card" htmlFor={photo.id}>
                         <div className="image-card__card image-card__interact">
-                            <button className={`image-card--save image-card--save--${isDark?"dark":"light"}`} onClick={() => saveImage(photo)}>
-                                <img src={"assets/img/bookmark-"+(isDark?"dark":"light")+".png"} alt="bookmark"></img>
+                            <button className={`image-card--save image-card--save--${isDark?"dark":"light"}`} onClick={() => removeImage(photo)}>
+                                <img src={"assets/img/crossed-bookmark-"+(isDark?"dark":"light")+".png"} alt="bookmark"></img>
                             </button>
                             <div className="image-card__card--download">
                                 <button onClick={photo.download}>
@@ -114,8 +111,8 @@ function ImageCard({fetchedImages}){
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <button className={"image-card--save--modal image-card--save--"+(isDark?"dark":"light")} onClick={() => saveImage(photo)}>
-                                    <img src={"assets/img/bookmark-"+(isDark?"dark":"light")+".png"} alt="bookmark"></img>
+                                <button className={"image-card--save--modal image-card--save--"+(isDark?"dark":"light")} onClick={() => removeImage(photo)}>
+                                    <img src={"assets/img/crossed-bookmark-"+(isDark?"dark":"light")+".png"} alt="bookmark"></img>
                                 </button>
                                 <button className={"image-card--download--modal image-card--save--"+(isDark?"dark":"light")} onClick={photo.download}>
                                     <img src={"assets/img/download-"+(isDark?"dark":"light")+".png"} alt="download image"/>
@@ -130,4 +127,4 @@ function ImageCard({fetchedImages}){
     />;
 }
 
-export default ImageCard;
+export default MyImageCard;

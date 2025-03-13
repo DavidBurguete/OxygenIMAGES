@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from './components/ThemeProvider';
 import Header from './components/header/Header';
 import LightDarkThemeToggler from './components/header/LightDarkThemeToggler';
@@ -10,27 +10,32 @@ import About from './pages/About';
 import Home from './pages/Home';
 import MyPhotos from './pages/MyPhotos';
 import Error404 from './pages/Error404';
-import { search } from './redux/searchSlice';
+import { search, goToPage, setQuery } from './redux/searchSlice';
 
 
 function App() {
   const [isActive, setIsActive] = useState(false);
-  const [query, setQuery] = useState('');
+  const { favorites } = useSelector(state => state.favorites);
   const dispatch = useDispatch();
 
   const toggleActive = () => {
-      setIsActive(!isActive);
+    setIsActive(!isActive);
   }
 
   const handleChange = (e) => {
-    setQuery(e.target.value);
+    dispatch(setQuery(e.target.value));
   }
 
   const handleSearch = () => {
-    dispatch(search({query: query}));
+    dispatch(goToPage(1));
+    dispatch(search());
   };
 
-  handleSearch();
+  useEffect(handleSearch, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   return (
     <ThemeProvider>
@@ -38,7 +43,6 @@ function App() {
         <Header logoText={"OxygenIMAGES"}>
           <input 
             type='text'
-            value={query}
             onChange={handleChange}
             placeholder='Search...'
           ></input>
